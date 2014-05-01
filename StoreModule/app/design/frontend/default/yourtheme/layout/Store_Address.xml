@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <address_index_index>
+
+        <reference name="head">
+            <!-- <action method="addCss"><stylesheet>css/ui.css</stylesheet></action> -->
+          <!--   <action method="addJs">
+                <script>prototype/window.js</script>
+                <script>jquery.js</script>
+            </action> -->
+          <!--   <action method="addItem"><type>js_css</type><name>prototype/windows/themes/default.css</name></action>
+            <action method="addItem"><type>js_css</type><name>prototype/windows/themes/magento.css</name></action> -->
+        </reference>
+          <reference name="breadcrumbs">
+                <!--  <action method="addCrumb">
+                <crumbName>Home</crumbName>
+                <crumbInfo>
+                    <label>Home</label>
+                    <title>Home</title>
+                    <link>/</link>
+                </crumbInfo>
+            </action>
+            <action method="addCrumb">
+                <crumbName>Contacts</crumbName>
+                <crumbInfo>
+                    <label>Custom Page</label>
+                    <title>Custom Page</title>
+                </crumbInfo>
+            </action> -->
+             </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+           <block type="core/messages" name="global_messages" as="global_messages"/>
+          <block type="address/address"  name="address" template="address/test1.phtml" />
+        </reference>
+    </address_index_index>
+
+   
+
+</layout>

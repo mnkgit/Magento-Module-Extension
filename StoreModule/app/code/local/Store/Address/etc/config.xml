@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<config>
+
+	<modules>
+        <Store_Address>
+            <version>0.1.0</version>
+        </Store_Address>
+    </modules>
+
+    <frontend>
+        <routers>
+            <address>
+                <use>standard</use>
+                <args>
+                    <module>Store_Address</module>
+                    <frontName>storeaddress</frontName>  <!-- This is the URL
+ of the module. i.e www.yourmagento.com/index.php/test will be the url of your module. -->
+                </args>
+            </address>
+        </routers>
+        <layout>
+          <updates>
+            <address>
+              <file>Store_Address.xml</file>
+            </address>
+          </updates>
+        </layout>
+    </frontend>
+
+
+
+
+
+    <admin>
+    <routers>
+        <address>
+            <use>admin</use>
+            <args>
+               <module>Store_Address</module>
+               <frontName>storeaddress</frontName>
+            </args>
+         </address>
+      </routers>
+   	</admin>
+
+   	<adminhtml>
+        <layout>
+            <updates>
+                <address>
+                    <file>Store_Address.xml</file>
+                 </address>
+            </updates>
+        </layout>
+
+        <menu>
+        	<address module="address" translate="title">
+                <title>store</title>
+                <sort_order>120</sort_order>              
+                <children>
+                    <index module="address" translate="title">
+                        <title>address</title>
+                        <sort_order>1</sort_order>
+                        <action>storeaddress/adminhtml_address</action>
+                    </index>
+                </children>
+            </address>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <Store_Address>
+                            <title>Store Address Module</title>
+                            <sort_order>10</sort_order>
+                        </Store_Address>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <global>
+      	<helpers>
+            <address>
+                <class>Store_Address_Helper</class>
+            </address>
+        </helpers>
+
+        <blocks>
+            <address>
+                <class>Store_Address_Block</class>
+                <!-- <class>Store_Address_Block_Adminhtml_Address</class> -->
+            </address>
+        </blocks>
+
+        <models>
+            <store>
+                 <class>Store_Address_Model</class>
+                 <resourceModel>store_mysql4</resourceModel>
+            </store>
+            <store_mysql4>
+                 <class>Store_Address_Model_Mysql4</class>
+                 <entities>
+                     <address>
+                       <table>stores_address</table>
+                     </address> 
+                  </entities>
+            </store_mysql4>
+        </models>
+        <resources>
+                <!-- connection to write -->
+                <store_write>
+                    <connection>
+                        <use>core_write</use>
+                    </connection>
+                </store_write>
+                <!-- connection to read -->
+               <store_read>
+                  <connection>
+                     <use>core_read</use>
+                  </connection>
+               </store_read>
+        </resources>
+    </global>
+</config>

@@ -1,0 +1,71 @@
+<!-- loading spinner image -->
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN).'frontend/default/'.Mage::getSingleton('core/design_package')->getTheme('frontend').'/js/jquery.js'; ?>"></script> 
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN).'frontend/default/'.Mage::getSingleton('core/design_package')->getTheme('frontend').'/js/blockui.js'; ?>"></script> 
+<link rel="stylesheet" type="text/css" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN).'frontend/default/'.Mage::getSingleton('core/design_package')->getTheme('frontend').'/css/loader.css';?>" media="all" />
+<style type="text/css">
+table {
+    border-spacing: 6px;
+    empty-cells: show;
+    font-size: 121%;
+}
+</style>
+<link media="all" href="http://localhost/magento/skin/adminhtml/default/default/boxes.css" type="text/css" rel="stylesheet">
+
+ 
+<div style="left: -2px; top: 0px; width: 1216px; height: 833px; display: none;" id="loading-mask">
+    <p id="loading_mask_loader" class="loader"><img alt="Loading..." src="http://localhost/magento/skin/adminhtml/default/default/images/ajax-loader-tr.gif"><br>Please wait...</p>
+</div>
+
+
+
+<!-- loading spinner image -->
+<?php
+        $records =  $this->methodinblock();
+        $cnt    = count($records);
+        $url = Mage::getUrl('*/*');
+        if ($_SERVER['HTTPS'] == 'on') {
+              $url = str_replace('http:', 'https:', $url);
+        }
+        $baseurl =  Mage::helper('core/url')->getHomeUrl();//Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+?>
+        <h1><?php echo $this->__('Country Listings') ?></h1>
+        <table>
+            <?php 
+                $country =  Mage::getModel('adminhtml/system_config_source_country') ->toOptionArray();
+                $cntryCount = count($country); 
+                $addrscode = $this->getRequest()->getParam('address');
+            ?>
+            <?php  for ($i=1; $i < $cntryCount; $i++) {  ?>
+            <tr>
+                <td>
+                    <a onclick="loadstate('<?php echo $url.'state/country/'.$country[$i]['value']; ?>','<?php echo $country[$i]['value'];?>');"; href="javascript:void(0);">
+                        <?php echo $country[$i]['label']; ?>
+                    </a>
+                    <div id="state<?php echo $country[$i]['value']; ?>" style="margin-left:200px;">
+                    </div>
+                    <td>
+                        <div id="addr<?php echo $country[$i]['value']; ?>" style="margin-left:500px;">
+                        </div>
+                    </td>
+                </td> 
+            </tr>
+            <?php }  ?>
+        </table>
+
+<script type="text/javascript">
+    function loadstate(url,divid)
+    {
+        var reloadurl = url;
+                    new Ajax.Request(reloadurl, {
+                    method: 'get',
+                    onLoading: function (state_form) {
+                           jQuery('#loading-mask').attr("style","display:block;"); 
+                    },
+                    onComplete: function(state_form) {
+                          jQuery('#loading-mask').attr("style","display:none;"); 
+                        // $.unblockUI();
+                         jQuery('#state'+divid).html(state_form.responseText);
+                    }
+                });
+    }
+</script>

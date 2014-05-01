@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS `stores_address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) NOT NULL,
+  `country` varchar(250) NOT NULL,
+  `state` varchar(250) NOT NULL,
+  `status` int(2) NOT NULL DEFAULT '0',
+  `sort` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+
+INSERT INTO `stores_address` (`id`, `address`, `country`, `state`, `status`, `sort`) VALUES
+(1, 'Pakwan Cross Read', 'US', 'AZ', 0, 0),
+(2, 'Sattelite', 'US', 'AF', 0, 5),
+(3, 'Bodakdev Auda Garden', 'US', 'AF', 0, 0),
+(4, 'Ahmedabad', 'US', 'AA', 0, 0),
+(5, 'Sabarmati,Ahmedavbd', 'US', 'AA', 0, 0),
+(6, 'Junction Riad', 'CH', 'AI', 0, 0),
+(7, 'Green Valleys', 'CH', 'OW', 0, 0),
+(8, 'Relief Road,Ahmedabad,Gujrat,India', 'US', 'AZ', 0, 0);
+

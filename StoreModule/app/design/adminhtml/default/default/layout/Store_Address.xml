@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<layout version="0.1.0">
+  <address_adminhtml_index_index>
+     <reference name="content">
+             <!-- <block type="test/monblock"  name="afficher_monbloc"
+                  template="test/afficher.phtml" /> -->
+                  <!-- <block type="gallery/adminhtml_grid" name="aaaa" output="toHtml" /> -->
+      </reference>
+   </address_adminhtml_index_index>
+</layout>
