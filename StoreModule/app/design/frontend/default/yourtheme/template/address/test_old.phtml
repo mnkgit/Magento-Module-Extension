@@ -1,12 +1,17 @@
+
 <script type="text/javascript" src="../js/jquery.js"></script>
 <?php
     	$records =  $this->methodinblock();
+
+
       	$cnt	= count($records);
    	    $url = Mage::getUrl('*/*');
         if ($_SERVER['HTTPS'] == 'on') {
               $url = str_replace('http:', 'https:', $url);
         }
-        $baseurl =  Mage::helper('core/url')->getHomeUrl();//Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+
+         $baseurl =  Mage::helper('core/url')->getHomeUrl();//Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB);
+
 ?>
 <!-- start center -->
 <div id="main" class="col-main">
@@ -23,12 +28,14 @@
         <tbody>
             <tr>
                 <td colspan="3" ></td>
+               
                 <td colspan="2"><a href="<?php echo $baseurl.'test/index/new'; ?>" > Add New</a></td>
             </tr>
         	<tr>
         		<td><strong>Title</strong></td>
         		<td><strong>Description</strong></td>
                 <td><strong>Media</strong></td>
+
         		<td><strong>Edit</strong></td>
         		<td><strong>Delete<strong></td>
         	</tr>
@@ -76,3 +83,24 @@
         	</tr>
         </tbody>
     </table>
+
+
+<script type="text/javascript">
+
+
+//    $( document ).ready(function() {
+//         alert("dddddddddddddddd");
+// });
+
+//<![CDATA[
+function showCompare(url) {
+ 
+
+    winCompare = new Window({className:'magento',title:'Compare Products',url:url,width:820,height:600,minimizable:false,maximizable:false,showEffectOptions:{duration:0.4},hideEffectOptions:{duration:0.4}});
+    alert(winCompare);
+
+    winCompare.setZIndex(100);
+    winCompare.showCenter(true);
+}
+// ]]></script>
+
